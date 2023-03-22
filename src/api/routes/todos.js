@@ -6,7 +6,6 @@ const TodosHandler = require('../handlers/todos');
 class TodosRouter {
   constructor() {
     this.router = express.Router();
-    this.todosHandler = new TodosHandler();
     this.setupRoutes();
   }
 
@@ -15,10 +14,10 @@ class TodosRouter {
   }
 
   setupRoutes() {
-    this.router.patch('/todos/:id', validate('patchTodo', 'body'), this.todosHandler.patchTodo);
-    this.router.get('/todos/:id', this.todosHandler.getTodos);
-    this.router.post('/todos', validate('createTodo', 'body'), this.todosHandler.createTodo);
-    this.router.delete('/todos/:id', this.todosHandler.deleteTodo);
+    this.router.patch('/todos/:id', validate('patchTodo', 'body'), TodosHandler.patchTodo);
+    this.router.get('/todos/:id', TodosHandler.getTodos);
+    this.router.post('/todos', validate('createTodo', 'body'), TodosHandler.createTodo);
+    this.router.delete('/todos/:id', TodosHandler.deleteTodo);
   }
 }
 
